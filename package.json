@@ -1,0 +1,73 @@
+{
+	"name": "social-media-clone",
+	"version": "1.0.0",
+	"description": "An social media clone.",
+	"main": "src/index.ts",
+	"rootDir": "src",
+	"scripts": {
+		"test": "mocha --require ts-node/register tests/**/*.ts",
+		"lint": "eslint --ext .ts src",
+		"lint:fix": "eslint --ext .ts src --fix",
+		"prettier": "prettier .",
+		"prettier:fix": "prettier --write .",
+		"dev": "next dev",
+		"build": "next build",
+		"start": "next start",
+		"coverage": "nyc npm run test"
+	},
+	"pre-commit": [
+		"lint:fix",
+		"prettier:fix",
+		"build",
+		"test",
+		"coverage"
+	],
+	"keywords": [],
+	"author": "FallenDeity",
+	"license": "MIT",
+	"devDependencies": {
+		"@next/eslint-plugin-next": "^13.4.9",
+		"@types/mocha": "^10.0.1",
+		"@types/node": "^20.2.1",
+		"@typescript-eslint/eslint-plugin": "^5.59.6",
+		"@typescript-eslint/parser": "^5.59.6",
+		"autoprefixer": "^10.4.14",
+		"eslint": "^7.32.0",
+		"eslint-config-prettier": "^7.2.0",
+		"eslint-plugin-prettier": "^4.2.1",
+		"eslint-plugin-simple-import-sort": "^10.0.0",
+		"mocha": "^10.2.0",
+		"nyc": "^15.1.0",
+		"postcss": "^8.4.24",
+		"pre-commit": "^1.2.2",
+		"prettier": "^2.8.8",
+		"prettier-plugin-tailwindcss": "^0.3.0",
+		"tailwindcss": "^3.3.2",
+		"ts-loader": "^9.4.2",
+		"ts-node": "^10.9.1",
+		"typescript": "^5.0.4",
+		"webpack": "^5.83.1",
+		"webpack-cli": "^5.1.1"
+	},
+	"prettier": {
+		"trailingComma": "es5",
+		"tabWidth": 4,
+		"useTabs": true,
+		"semi": true,
+		"printWidth": 120,
+		"bracketSpacing": true,
+		"bracketSameLine": true
+	},
+	"dependencies": {
+		"@types/react": "^18.2.8",
+		"class-variance-authority": "^0.6.1",
+		"clsx": "^1.2.1",
+		"lucide-react": "^0.259.0",
+		"next": "^13.4.4",
+		"react": "^18.2.0",
+		"react-dom": "^18.2.0",
+		"tailwind-merge": "^1.13.2",
+		"tailwindcss-animate": "^1.0.6",
+		"winston": "^3.9.0"
+	}
+}
