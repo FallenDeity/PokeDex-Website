@@ -1,7 +1,7 @@
 {
-	"name": "social-media-clone",
+	"name": "pokedex-website",
 	"version": "1.0.0",
-	"description": "An social media clone.",
+	"description": "A fanmade pokedex.",
 	"main": "src/index.ts",
 	"rootDir": "src",
 	"scripts": {
