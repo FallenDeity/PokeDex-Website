@@ -1,12 +1,19 @@
-import Image from "next/image";
 import React from "react";
 
 import BackGround from "@/components/Background";
+import CompareContainer from "@/components/CompareContainer";
 import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
-import { meta } from "@/lib/models";
+import { meta, MetaData } from "@/lib/models";
 
-export const metadata = meta;
+// eslint-disable-next-line @typescript-eslint/require-await
+export async function generateMetadata(): Promise<MetaData> {
+	meta.title = "Compare";
+	meta.description = "Compare your favorite Pokemon";
+	meta.openGraph.title = "Compare";
+	meta.openGraph.description = "Compare your favorite Pokemon";
+	return meta;
+}
 
 export default function Home(): React.JSX.Element {
 	return (
@@ -17,18 +24,7 @@ export default function Home(): React.JSX.Element {
 					<Navbar />
 				</section>
 				<section className="flex flex-grow flex-col items-center justify-center sm:px-[9.8vh]">
-					<div className="flex h-full w-full flex-col items-center justify-center space-y-5 border-x bg-gray-200 bg-opacity-20 backdrop-blur-sm backdrop-filter dark:bg-gray-800 dark:bg-opacity-20">
-						<Image
-							src="/logo.png"
-							alt="Logo"
-							width={200}
-							height={200}
-							className="h-40 w-40 cursor-pointer"
-						/>
-						<div className="flex flex-col items-center justify-center space-y-5">
-							<h1 className="text-center text-3xl font-bold md:text-5xl">Welcome to PokeLore</h1>
-						</div>
-					</div>
+					<CompareContainer />
 				</section>
 				<section className="h-[10vh] border-t">
 					<Footer />

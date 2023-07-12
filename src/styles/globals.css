@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Raleway:wght@100;200;300;400;500;700&display=swap");
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -73,6 +75,56 @@
 		@apply border-border;
 	}
 	body {
+		font-family: Raleway, sans-serif;
 		@apply bg-background text-foreground;
+	}
+}
+
+.Drop-shadow {
+	float: right;
+}
+.Drop-shadow img {
+	filter: drop-shadow(15px 5px 5px rgba(33, 33, 33, 0.62));
+}
+
+.circle-container {
+	display: flex;
+	margin: 3rem;
+	.outer-circle {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		height: 24rem;
+		width: 24rem;
+		border: 0.2rem solid black;
+		border-radius: 50rem;
+		position: relative;
+	}
+	.inner-circle {
+		height: 20rem;
+		width: 20rem;
+		border: 0.3rem solid black;
+		border-radius: 40rem;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		img {
+			max-inline-size: 100%;
+			block-size: auto;
+			z-index: 100;
+			height: 17rem;
+		}
+	}
+	.lines {
+		display: flex;
+		gap: 3rem;
+		position: absolute;
+		z-index: -10;
+		.line {
+			height: 28rem;
+			width: 0.3rem;
+			background-color: black;
+			transform: rotate(45deg);
+		}
 	}
 }
