@@ -4,9 +4,16 @@ import React from "react";
 import BackGround from "@/components/Background";
 import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
-import { meta } from "@/lib/models";
+import { meta, MetaData } from "@/lib/models";
 
-export const metadata = meta;
+// eslint-disable-next-line @typescript-eslint/require-await
+export async function generateMetadata(): Promise<MetaData> {
+	meta.title = "PokeDex";
+	meta.description = "A fan-made PokeDex";
+	meta.openGraph.title = "PokeDex";
+	meta.openGraph.description = "A fan-made PokeDex";
+	return meta;
+}
 
 export default function Home(): React.JSX.Element {
 	return (

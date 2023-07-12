@@ -1,3 +1,18 @@
+<p align="center"><img src="./public/logo.png" alt="Logo" width="300" height="300"></p>
+<h1 align="center">Pokedex</h1>
+<h4 align="center">A Pokedex built using React, Next.js, Tailwind CSS, Firebase and more.</h4>
+
+# Features
+
+- [x] Gen 1-9 Pokemons.
+- [x] Dynamic website using pokeapi
+- [x] Search for pokemon.
+- [x] Compare pokemon
+- [x] View detailed information about pokemon.
+- [x] Favorite pokemon.
+- [x] Saved sessions and login using firebase.
+- [x] Styled, Modern UI. 
+
 # Setup
 
 ```bash
