@@ -29,7 +29,7 @@ export default function FavoritesContainer(): React.JSX.Element {
 			});
 		}
 		void getPokemonData();
-	}, [likedPokemon]);
+	}, [likedPokemon, session]);
 	return (
 		<div className="flex h-full w-full flex-col items-center border-x bg-gray-200 bg-opacity-20 backdrop-blur-sm backdrop-filter dark:bg-gray-800 dark:bg-opacity-20">
 			<div className="flex h-[80vh] flex-wrap justify-center overflow-y-scroll scrollbar-hide">

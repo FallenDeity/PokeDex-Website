@@ -227,7 +227,7 @@ export default function PokemonContainer({ params }: { params: { slug: string } 
 											width={200}
 											height={200}
 											alt={pokemon.name}
-											className="m-3 h-full w-full"
+											className="mb-3 h-full w-full"
 										/>
 										<Image
 											src={
@@ -240,7 +240,7 @@ export default function PokemonContainer({ params }: { params: { slug: string } 
 											width={200}
 											height={200}
 											alt={pokemon.name}
-											className="m-3 h-full w-full"
+											className="mb-3 h-full w-full"
 										/>
 									</Carousel>
 								</div>

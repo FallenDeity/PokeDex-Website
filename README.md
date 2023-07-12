@@ -12,6 +12,11 @@
 - [x] Favorite pokemon.
 - [x] Saved sessions and login using firebase.
 - [x] Styled, Modern UI.
+- [x] [Youtube Demo](https://youtu.be/tmB-VRgXhE4)
+
+# Demo
+
+![Demo](./public/demo.gif)
 
 # Setup
 
