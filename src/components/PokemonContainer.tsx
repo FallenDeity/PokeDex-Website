@@ -1,5 +1,7 @@
 "use client";
 
+import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
+
 import Image from "next/image";
 import { notFound } from "next/navigation";
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
@@ -7,6 +9,7 @@ import { notFound } from "next/navigation";
 import ColorThief from "node_modules/colorthief/dist/color-thief.mjs";
 import { EvolutionChain, EvolutionClient, MoveClient, Pokemon, PokemonClient, PokemonSpecies } from "pokenode-ts";
 import React from "react";
+import { Carousel } from "react-responsive-carousel";
 import { useRecoilState } from "recoil";
 
 import { accentColor, accentColors } from "@/components/atoms/accentColor";
@@ -61,7 +64,7 @@ export default function PokemonContainer({ params }: { params: { slug: string } 
 				try {
 					// eslint-disable-next-line @typescript-eslint/no-unsafe-call,@typescript-eslint/no-unsafe-member-access
 					const colors = thief.getPalette(img) as [number, number, number][];
-					const darkColors = colors.filter((color) => color[0] + color[1] + color[2] < 500);
+					const darkColors = colors.filter((color) => color[0] + color[1] + color[2] < 600);
 					const color = darkColors[Math.floor(Math.random() * darkColors.length)];
 					setColor({
 						color: "text-white",
@@ -208,17 +211,38 @@ export default function PokemonContainer({ params }: { params: { slug: string } 
 						<div className="outer-circle" style={{ borderColor: color.border }}>
 							<div className="inner-circle" style={{ borderColor: color.border }}>
 								<div className="image-container items-center justify-center">
-									<Image
-										src={
-											// eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
-											String(pokemon.sprites.other?.["official-artwork"]?.front_default) ??
-											pokemon.sprites.front_default
-										}
-										width={200}
-										height={200}
-										alt={pokemon.name}
-										className="h-full w-full"
-									/>
+									<Carousel
+										showArrows={false}
+										showStatus={false}
+										infiniteLoop={true}
+										autoPlay={true}
+										interval={5000}
+										emulateTouch={true}>
+										<Image
+											src={
+												// eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
+												String(pokemon.sprites.other?.["official-artwork"]?.front_default) ??
+												pokemon.sprites.front_default
+											}
+											width={200}
+											height={200}
+											alt={pokemon.name}
+											className="m-3 h-full w-full"
+										/>
+										<Image
+											src={
+												// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+												// @ts-expect-error
+												// eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
+												String(pokemon.sprites.other?.["official-artwork"]?.front_shiny) ??
+												pokemon.sprites.front_shiny
+											}
+											width={200}
+											height={200}
+											alt={pokemon.name}
+											className="m-3 h-full w-full"
+										/>
+									</Carousel>
 								</div>
 								<div className="lines">
 									<div className="line line-1" style={{ backgroundColor: color.border }}></div>
