@@ -34,14 +34,14 @@ export default function SearchContainer(): React.JSX.Element {
 		async function getPokemonData(): Promise<void> {
 			const api = new PokemonClient();
 			// eslint-disable-next-line @typescript-eslint/no-misused-promises
-			generationList.forEach(async (pokemon): Promise<void> => {
+			for (const pokemon of generationList) {
 				try {
 					const _pokemon = await api.getPokemonById(pokemon);
 					setPokemonData((prev) => new Map(prev.set(_pokemon.id, _pokemon)));
 				} catch (e) {
 					console.log(e);
 				}
-			});
+			}
 		}
 		void getPokemonData();
 	}, [generationList]);
@@ -53,18 +53,17 @@ export default function SearchContainer(): React.JSX.Element {
 		const search = pokemonList
 			.filter((pokemon) => pokemon.toLocaleLowerCase().startsWith(e.target.value.toLowerCase()))
 			.slice(0, 10);
-		// eslint-disable-next-line @typescript-eslint/no-misused-promises
-		search.forEach(async (pokemon): Promise<void> => {
+		for (const pokemon of search) {
 			try {
 				const _pokemon = await api.getPokemonByName(pokemon);
 				setSearchData((prev) => new Map(prev.set(_pokemon.id, _pokemon)));
 			} catch (e) {
 				console.log(e);
 			}
-		});
+		}
 	};
 	return (
-		<div className="flex h-full w-full flex-col items-center border-x bg-gray-200 bg-opacity-20 backdrop-blur-sm backdrop-filter dark:bg-gray-800 dark:bg-opacity-20">
+		<div className="flex h-full w-full flex-col items-center border-x bg-gray-500 bg-opacity-20 backdrop-blur-sm backdrop-filter dark:bg-gray-800 dark:bg-opacity-20">
 			<div className="relative mt-5 flex w-4/5 flex-row rounded-full shadow-lg sm:w-2/3">
 				<FaMagnifyingGlass className="absolute left-3 top-1/2 h-5 w-5 -translate-y-1/2 transform text-neutral-900 dark:text-neutral-100" />
 				<input

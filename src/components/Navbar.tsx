@@ -97,7 +97,7 @@ export default function Navbar(): React.JSX.Element {
 						<GiHamburgerMenu className="cursor-pointer text-2xl" />
 					</div>
 				</DropdownMenuTrigger>
-				<DropdownMenuContent className="w-56">
+				<DropdownMenuContent className="w-32 md:w-56">
 					<DropdownMenuGroup>
 						{routes.map((route) => (
 							<DropdownMenuItem key={route.name} onClick={(): void => router.push(route.path)}>

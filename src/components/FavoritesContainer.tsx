@@ -18,20 +18,19 @@ export default function FavoritesContainer(): React.JSX.Element {
 		// eslint-disable-next-line @typescript-eslint/require-await
 		async function getPokemonData(): Promise<void> {
 			const api = new PokemonClient();
-			// eslint-disable-next-line @typescript-eslint/no-misused-promises
-			likedPokemon.forEach(async (pokemon): Promise<void> => {
+			for (const pokemon of likedPokemon) {
 				try {
 					const _pokemon = await api.getPokemonById(pokemon);
 					setPokemonData((prev) => new Map(prev.set(_pokemon.id, _pokemon)));
 				} catch (e) {
 					console.log(e);
 				}
-			});
+			}
 		}
 		void getPokemonData();
 	}, [likedPokemon, session]);
 	return (
-		<div className="flex h-full w-full flex-col items-center border-x bg-gray-200 bg-opacity-20 backdrop-blur-sm backdrop-filter dark:bg-gray-800 dark:bg-opacity-20">
+		<div className="flex h-full w-full flex-col items-center border-x bg-gray-500 bg-opacity-20 backdrop-blur-sm backdrop-filter dark:bg-gray-800 dark:bg-opacity-20">
 			<div className="flex h-[80vh] flex-wrap justify-center overflow-y-scroll scrollbar-hide">
 				{!session && (
 					<div className="flex h-full w-full flex-col items-center justify-center">

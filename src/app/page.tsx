@@ -24,7 +24,7 @@ export default function Home(): React.JSX.Element {
 					<Navbar />
 				</section>
 				<section className="flex flex-grow flex-col items-center justify-center sm:px-[9.8vh]">
-					<div className="flex h-full w-full flex-col items-center justify-center space-y-5 border-x bg-gray-200 bg-opacity-20 backdrop-blur-sm backdrop-filter dark:bg-gray-800 dark:bg-opacity-20">
+					<div className="flex h-full w-full flex-col items-center justify-center space-y-5 border-x bg-gray-500 bg-opacity-20 backdrop-blur-sm backdrop-filter dark:bg-gray-800 dark:bg-opacity-20">
 						<Image
 							src="/logo.png"
 							alt="Logo"

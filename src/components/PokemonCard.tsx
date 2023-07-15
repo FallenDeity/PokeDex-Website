@@ -51,35 +51,34 @@ export default function PokemonCard({ pokemon, path = "" }: { pokemon: Pokemon; 
 	};
 	return (
 		<div className="m-5 flex h-fit w-[14rem] flex-col items-center justify-center rounded-2xl bg-neutral-300 bg-opacity-50 px-3 py-2 shadow-xl shadow-neutral-500 backdrop-blur-sm backdrop-filter dark:bg-neutral-500 dark:bg-opacity-50 dark:shadow-neutral-900">
-			{session?.token?.sub && (
-				<div className="mb-1 flex w-full flex-row justify-between">
-					{likedPokemon.includes(pokemon.id) ? (
+			<div className="mb-1 flex w-full flex-row justify-between">
+				{Boolean(session?.token?.sub) &&
+					(likedPokemon.includes(pokemon.id) ? (
 						<FaTrashCan
 							className="h-5 w-5 transform cursor-pointer text-red-600 transition-all duration-300 ease-in-out hover:scale-125"
 							/* eslint-disable-next-line @typescript-eslint/no-misused-promises */
-							onClick={(): Promise<void> => toggleLike(pokemon, session.token?.sub ?? "", true)}
+							onClick={(): Promise<void> => toggleLike(pokemon, session?.token?.sub ?? "", true)}
 						/>
 					) : (
 						<FaPlus
 							className="h-5 w-5 transform cursor-pointer text-green-600 transition-all duration-300 ease-in-out hover:scale-125"
 							/* eslint-disable-next-line @typescript-eslint/no-misused-promises */
-							onClick={(): Promise<void> => toggleLike(pokemon, session.token?.sub ?? "", false)}
+							onClick={(): Promise<void> => toggleLike(pokemon, session?.token?.sub ?? "", false)}
 						/>
-					)}
-					{(compare.mon_1 && compare.mon_1.id === pokemon.id) ||
-					(compare.mon_2 && compare.mon_2.id === pokemon.id) ? (
-						<BiGitCompare
-							onClick={(): void => toggleCompare(pokemon)}
-							className="h-5 w-5 transform cursor-pointer text-red-700 transition-all duration-300 ease-in-out hover:scale-125"
-						/>
-					) : (
-						<BiGitCompare
-							onClick={(): void => toggleCompare(pokemon)}
-							className="h-5 w-5 transform cursor-pointer text-blue-700 transition-all duration-300 ease-in-out hover:scale-125"
-						/>
-					)}
-				</div>
-			)}
+					))}
+				{(compare.mon_1 && compare.mon_1.id === pokemon.id) ||
+				(compare.mon_2 && compare.mon_2.id === pokemon.id) ? (
+					<BiGitCompare
+						onClick={(): void => toggleCompare(pokemon)}
+						className="h-5 w-5 transform cursor-pointer text-red-700 transition-all duration-300 ease-in-out hover:scale-125"
+					/>
+				) : (
+					<BiGitCompare
+						onClick={(): void => toggleCompare(pokemon)}
+						className="h-5 w-5 transform cursor-pointer text-blue-700 transition-all duration-300 ease-in-out hover:scale-125"
+					/>
+				)}
+			</div>
 			<h1 className="w-11/12 truncate text-center text-xl font-extrabold">{pokemon.name.toLocaleUpperCase()}</h1>
 			<div className="Drop-shadow" onClick={(): void => router.push(`/pokemon/${pokemon.id}`)}>
 				<Image

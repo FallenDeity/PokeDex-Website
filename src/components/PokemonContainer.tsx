@@ -154,18 +154,18 @@ export default function PokemonContainer({ params }: { params: { slug: string } 
 		void getLocations();
 	}, [pokemon, species]);
 	return (
-		<div className="flex h-full w-full flex-col border-x bg-gray-200 bg-opacity-20 backdrop-blur-sm backdrop-filter dark:bg-gray-800 dark:bg-opacity-20">
+		<div className="flex h-full w-full flex-col border-x bg-gray-500 bg-opacity-20 backdrop-blur-sm backdrop-filter dark:bg-gray-800 dark:bg-opacity-20">
 			{pokemon && species && page === "Description" && (
-				<div className="flex w-full flex-grow flex-row">
-					<div className="flex w-full flex-grow flex-col space-x-10">
+				<div className="flex h-[80vh] w-full flex-grow flex-col overflow-y-scroll scrollbar-hide xl:flex-row">
+					<div className="flex w-full flex-grow flex-col space-y-5 xl:space-y-0">
 						<div
-							className="m-3 h-fit w-[20rem] space-y-3 rounded-md border-l-4 bg-gray-200 bg-opacity-20 p-3 backdrop-blur-sm backdrop-filter dark:bg-gray-800 dark:bg-opacity-20"
+							className="m-3 h-fit w-[16rem] space-y-3 rounded-md border-l-4 bg-gray-200 bg-opacity-20 p-3 backdrop-blur-sm backdrop-filter dark:bg-gray-800 dark:bg-opacity-20 sm:w-[20rem]"
 							style={{ borderColor: color.border }}>
 							<h1 className="flex flex-row items-end text-3xl font-bold capitalize">
 								{pokemon.name}
 								<p className="text-xl">#{pokemon.id.toString().padStart(3, "0")}</p>
 							</h1>
-							<div className="flex flex-row items-center space-x-10">
+							<div className="flex flex-row items-center space-x-2 sm:space-x-10">
 								{pokemon.types.map((type) => (
 									<div
 										className="flex flex-col items-center justify-center space-y-1"
@@ -187,14 +187,14 @@ export default function PokemonContainer({ params }: { params: { slug: string } 
 								className="absolute -bottom-3 -right-5 h-10 w-1/2 rounded-md border-2 backdrop-blur-sm backdrop-filter transition-all duration-300 ease-in-out hover:bg-gray-200 dark:bg-gray-800 dark:bg-opacity-20 dark:hover:bg-gray-800"
 								style={{ borderColor: color.border }}
 								onClick={(): void => setPage("Evolutions")}>
-								<p className="text-md">SEE EVOLUTIONS</p>
+								<p className="md:text-md text-sm">SEE EVOLUTIONS</p>
 							</button>
 						</div>
-						<div className="flex h-full flex-col justify-center space-y-3">
+						<div className="ml-3 flex h-full w-full flex-col justify-center space-y-3 xl:mt-0">
 							{pokemon.stats.map((stat) => (
 								<div className="flex flex-row items-center space-x-2 text-right" key={stat.stat.name}>
-									<p className="w-[8rem] text-sm">{stat.stat.name.toLocaleUpperCase()}</p>
-									<div className="ml-2 h-3 w-[15rem] rounded-full bg-gray-200 bg-opacity-40 backdrop-blur-sm backdrop-filter dark:bg-gray-700 dark:bg-opacity-40">
+									<p className="w-[4rem] text-sm sm:w-[8rem]">{stat.stat.name.toLocaleUpperCase()}</p>
+									<div className="h-3 w-[10rem] rounded-full bg-gray-200 bg-opacity-40 backdrop-blur-sm backdrop-filter dark:bg-gray-700 dark:bg-opacity-40 sm:w-[15rem]">
 										<div
 											className="h-3 rounded-full bg-opacity-20 dark:bg-opacity-20"
 											style={{
@@ -207,10 +207,14 @@ export default function PokemonContainer({ params }: { params: { slug: string } 
 							))}
 						</div>
 					</div>
-					<div className="circle-container" style={{ borderColor: color.border }}>
-						<div className="outer-circle" style={{ borderColor: color.border }}>
-							<div className="inner-circle" style={{ borderColor: color.border }}>
-								<div className="image-container items-center justify-center">
+					<div className="m-[3rem] flex justify-center" style={{ borderColor: color.border }}>
+						<div
+							className="relative flex h-full w-full items-center justify-center rounded-full border-[0.2rem] sm:h-[24rem] sm:w-[24rem]"
+							style={{ borderColor: color.border }}>
+							<div
+								className="m-2 flex h-[16rem] w-[16rem] items-center justify-center rounded-full border-[0.3rem] sm:m-0 sm:h-[20rem] sm:w-[20rem]"
+								style={{ borderColor: color.border }}>
+								<div className="items-center justify-center">
 									<Carousel
 										showArrows={false}
 										showStatus={false}
@@ -224,10 +228,10 @@ export default function PokemonContainer({ params }: { params: { slug: string } 
 												String(pokemon.sprites.other?.["official-artwork"]?.front_default) ??
 												pokemon.sprites.front_default
 											}
-											width={200}
-											height={200}
+											width={50}
+											height={50}
 											alt={pokemon.name}
-											className="mb-3 h-full w-full"
+											className="z-10 mx-auto block"
 										/>
 										<Image
 											src={
@@ -237,23 +241,27 @@ export default function PokemonContainer({ params }: { params: { slug: string } 
 												String(pokemon.sprites.other?.["official-artwork"]?.front_shiny) ??
 												pokemon.sprites.front_shiny
 											}
-											width={200}
-											height={200}
+											width={50}
+											height={50}
 											alt={pokemon.name}
-											className="mb-3 h-full w-full"
+											className="z-10 mx-auto block"
 										/>
 									</Carousel>
 								</div>
-								<div className="lines">
-									<div className="line line-1" style={{ backgroundColor: color.border }}></div>
-									<div className="line line-2" style={{ backgroundColor: color.border }}></div>
+								<div className="absolute -z-10 flex gap-[3rem]">
+									<div
+										className="h-[20rem] w-[0.3rem] rotate-45 sm:h-[28rem]"
+										style={{ backgroundColor: color.border }}></div>
+									<div
+										className="h-[20rem] w-[0.3rem] rotate-45 sm:h-[28rem]"
+										style={{ backgroundColor: color.border }}></div>
 								</div>
 							</div>
 						</div>
 					</div>
-					<div className="m-3 flex w-full flex-grow flex-col self-end text-center">
+					<div className="m-3 flex w-fit flex-grow flex-col self-end text-center xl:w-full">
 						<div
-							className="h-fit w-full space-y-3 rounded-md border-r-4 bg-gray-200 bg-opacity-20 p-3 backdrop-blur-sm backdrop-filter dark:bg-gray-800 dark:bg-opacity-20"
+							className="h-fit w-fit space-y-3 rounded-md border-r-4 bg-gray-200 bg-opacity-20 p-3 backdrop-blur-sm backdrop-filter dark:bg-gray-800 dark:bg-opacity-20 xl:w-full"
 							style={{ borderColor: color.border }}>
 							<h1 className="text-2xl font-bold">DESCRIPTION</h1>
 							<p className="text-md">{description}</p>
