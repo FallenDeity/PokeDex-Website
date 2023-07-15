@@ -11,7 +11,7 @@
 - [x] View detailed information about pokemon.
 - [x] Favorite pokemon.
 - [x] Saved sessions and login using firebase.
-- [x] Styled, Modern UI.
+- [x] Styled, Modern Responsive UI.
 - [x] [Youtube Demo](https://youtu.be/tmB-VRgXhE4)
 
 # Demo
