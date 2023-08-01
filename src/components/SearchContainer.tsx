@@ -45,22 +45,25 @@ export default function SearchContainer(): React.JSX.Element {
 		}
 		void getPokemonData();
 	}, [generationList]);
-	const HandleSearch = React.useCallback(async (e: React.ChangeEvent<HTMLInputElement>): Promise<void> => {
-		if (e.target.value.trim() === "") return setSearchData(new Map());
-		setSearchData(new Map());
-		const api = new PokemonClient();
-		const search = pokemonList
-			.filter((pokemon) => pokemon.toLocaleLowerCase().startsWith(e.target.value.toLowerCase()))
-			.slice(0, 10);
-		for (const pokemon of search) {
-			try {
-				const _pokemon = await api.getPokemonByName(pokemon);
-				setSearchData((prev) => new Map(prev.set(_pokemon.id, _pokemon)));
-			} catch (e) {
-				console.log(e);
+	const HandleSearch = React.useCallback(
+		async (e: React.ChangeEvent<HTMLInputElement>): Promise<void> => {
+			if (e.target.value.trim() === "") return setSearchData(new Map());
+			setSearchData(new Map());
+			const api = new PokemonClient();
+			const search = pokemonList
+				.filter((pokemon) => pokemon.toLocaleLowerCase().startsWith(e.target.value.toLowerCase()))
+				.slice(0, 10);
+			for (const pokemon of search) {
+				try {
+					const _pokemon = await api.getPokemonByName(pokemon);
+					setSearchData((prev) => new Map(prev.set(_pokemon.id, _pokemon)));
+				} catch (e) {
+					console.log(e);
+				}
 			}
-		}
-	}, []);
+		},
+		[searchBarRef, pokemonList]
+	);
 	return (
 		<div className="flex h-full w-full flex-col items-center border-x bg-gray-500 bg-opacity-20 backdrop-blur-sm backdrop-filter dark:bg-gray-800 dark:bg-opacity-20">
 			<div className="relative mt-5 flex w-4/5 flex-row rounded-full shadow-lg sm:w-2/3">
