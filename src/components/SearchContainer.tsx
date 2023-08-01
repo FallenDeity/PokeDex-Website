@@ -45,8 +45,7 @@ export default function SearchContainer(): React.JSX.Element {
 		}
 		void getPokemonData();
 	}, [generationList]);
-	// eslint-disable-next-line @typescript-eslint/require-await
-	const HandleSearch = async (e: React.ChangeEvent<HTMLInputElement>): Promise<void> => {
+	const HandleSearch = React.useCallback(async (e: React.ChangeEvent<HTMLInputElement>): Promise<void> => {
 		if (e.target.value.trim() === "") return setSearchData(new Map());
 		setSearchData(new Map());
 		const api = new PokemonClient();
@@ -61,7 +60,7 @@ export default function SearchContainer(): React.JSX.Element {
 				console.log(e);
 			}
 		}
-	};
+	}, []);
 	return (
 		<div className="flex h-full w-full flex-col items-center border-x bg-gray-500 bg-opacity-20 backdrop-blur-sm backdrop-filter dark:bg-gray-800 dark:bg-opacity-20">
 			<div className="relative mt-5 flex w-4/5 flex-row rounded-full shadow-lg sm:w-2/3">
