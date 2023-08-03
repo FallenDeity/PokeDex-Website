@@ -156,7 +156,7 @@ export default function PokemonContainer({ params }: { params: { slug: string } 
 	return (
 		<div className="flex h-full w-full flex-col border-x bg-gray-500 bg-opacity-20 backdrop-blur-sm backdrop-filter dark:bg-gray-800 dark:bg-opacity-20">
 			{pokemon && species && page === "Description" && (
-				<div className="flex h-[80vh] w-full flex-grow flex-col overflow-y-scroll scrollbar-hide xl:flex-row">
+				<div className="flex h-[80vh] w-full flex-grow flex-col overflow-x-hidden overflow-y-scroll scrollbar-hide xl:flex-row">
 					<div className="flex w-full flex-grow flex-col space-y-5 xl:space-y-0">
 						<div
 							className="m-3 h-fit w-[16rem] space-y-3 rounded-md border-l-4 bg-gray-200 bg-opacity-20 p-3 backdrop-blur-sm backdrop-filter dark:bg-gray-800 dark:bg-opacity-20 sm:w-[20rem]"
@@ -325,7 +325,9 @@ export default function PokemonContainer({ params }: { params: { slug: string } 
 			{Boolean(evolutionMons.length) && page === "Evolutions" && (
 				<div className="flex h-[80vh] flex-wrap justify-center overflow-y-scroll scrollbar-hide">
 					{evolutionMons.map((mon) => (
-						<PokemonCard pokemon={mon} path={"/"} key={mon.id} />
+						<div onClick={(): void => setPage("Description")}>
+							<PokemonCard pokemon={mon} path={"/"} key={mon.id} />
+						</div>
 					))}
 				</div>
 			)}
