@@ -30,18 +30,10 @@ export default function SearchContainer(): React.JSX.Element {
 	React.useEffect(() => {
 		if (generationList.length === 0) return;
 		setPokemonData(new Map());
-		// eslint-disable-next-line @typescript-eslint/require-await
 		async function getPokemonData(): Promise<void> {
 			const api = new PokemonClient();
-			// eslint-disable-next-line @typescript-eslint/no-misused-promises
-			for (const pokemon of generationList) {
-				try {
-					const _pokemon = await api.getPokemonById(pokemon);
-					setPokemonData((prev) => new Map(prev.set(_pokemon.id, _pokemon)));
-				} catch (e) {
-					console.log(e);
-				}
-			}
+			const _pokemon = await Promise.all(generationList.map((pokemon) => api.getPokemonById(pokemon)));
+			setPokemonData(new Map(_pokemon.map((p) => [p.id, p])));
 		}
 		void getPokemonData();
 	}, [generationList]);
@@ -53,14 +45,8 @@ export default function SearchContainer(): React.JSX.Element {
 			const search = pokemonList
 				.filter((pokemon) => pokemon.toLocaleLowerCase().startsWith(e.target.value.toLowerCase()))
 				.slice(0, 10);
-			for (const pokemon of search) {
-				try {
-					const _pokemon = await api.getPokemonByName(pokemon);
-					setSearchData((prev) => new Map(prev.set(_pokemon.id, _pokemon)));
-				} catch (e) {
-					console.log(e);
-				}
-			}
+			const _pokemon = await Promise.all(search.map((pokemon) => api.getPokemonByName(pokemon)));
+			setSearchData(new Map(_pokemon.map((p) => [p.id, p])));
 		},
 		[searchBarRef, pokemonList]
 	);
