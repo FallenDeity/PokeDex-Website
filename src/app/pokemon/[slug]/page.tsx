@@ -42,11 +42,13 @@ export default function Page({ params }: { params: { slug: string } }): React.JS
 	);
 }
 
-export async function generateStaticParams(): Promise<{ params: { slug: string } }[]> {
+/*
+export async function generateStaticParams(): Promise<{ slug: string }[]> {
 	const api = new PokemonClient();
 	const p_list = await api.listPokemons(0, 100_000);
 	const p_names = p_list.results.map((p) => p.name);
 	const p_ids = p_list.results.map((p) => p.url.split("/")[6]);
 	p_names.push(...p_ids);
-	return p_names.map((p) => ({ params: { slug: p } }));
+	return p_names.map((p) => ({ slug: p }));
 }
+*/
